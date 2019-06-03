@@ -1,0 +1,44 @@
+<div class="container">
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand">Productos</a>
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <a style="color: #007bff;" class="nav-link active" (click)="createFunc()">Crear Producto</a>
+      </li>
+    </ul>
+  </nav>
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Opciones</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <tr *ngFor="let product of products">
+        <th scope="row">{{ product.id }}</th>
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>
+          <button type="button" class="btn btn-outline-danger btn-sm btn-style" (click)="deleteProduct(product.id)">Eliminar</button>
+          <button type="button" class="btn btn-outline-success btn-sm btn-style" (click)="updateFunc(product)">Editar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div> <br>
+
+<div class="container">
+  <p *ngIf="!update" class="h4 mb-4">Ingresa el producto</p>
+  <p *ngIf="update" class="h4 mb-4">Edita el producto</p>
+      
+  <input [(ngModel)]="product.name" type="text" class="form-control mb-4" placeholder="Nombre">
+  <input [(ngModel)]="product.description" type="text" class="form-control mb-4" placeholder="Descripción">
+
+  <button *ngIf="!update" class="btn btn-color btn-block" (click)="createProduct()">Crear Producto</button>
+  <button *ngIf="update" class="btn btn-color btn-block" (click)="updateProduct()">Editar Producto</button>
+</div>
